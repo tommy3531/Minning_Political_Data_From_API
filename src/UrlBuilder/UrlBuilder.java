@@ -10,6 +10,7 @@ public class UrlBuilder {
     String apiKey = "4a8beb6a33b845edb52173f9f5764b62";
     String strSearchState;
     String strLegislatorUrl;
+    String legislatorFields = "&fields=first_name,last_name,leg_id";
 
 
     public UrlBuilder() {
@@ -23,7 +24,7 @@ public class UrlBuilder {
         strSearchState = userState;
 
         // Build url
-        strLegislatorUrl = baseUrl + "?state=" + strSearchState + "&apikey=" + apiKey;
+        strLegislatorUrl = baseUrl + "?state=" + strSearchState + "&apikey=" + apiKey + legislatorFields;
 
         // legislatorUrl
         return strLegislatorUrl;
