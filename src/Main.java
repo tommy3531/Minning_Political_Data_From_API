@@ -3,7 +3,7 @@ import OpenStates.OpenStateManager;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         OpenStateManager stateManager = new OpenStateManager();
         stateManager.startOpenState();
     }

@@ -7,5 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.8.0" level="application" />
+    <orderEntry type="library" exported="" name="com.googlecode.json-simple:json-simple:1.1.1" level="application" />
+    <orderEntry type="library" exported="" name="org.apache.httpcomponents:httpclient:4.5.2" level="application" />
+    <orderEntry type="library" exported="" name="org.openstates:openstates-client:1.0.1" level="application" />
   </component>
 </module>
