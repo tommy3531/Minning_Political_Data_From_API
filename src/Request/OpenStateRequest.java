@@ -11,13 +11,21 @@ public class OpenStateRequest {
 
     }
 
-    public HttpResponse sendLegislatorRequest(String url) throws Exception {
+    public HttpResponse sendLegislatorRequest(String legislatorURL) throws Exception {
 
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(url);
+        HttpClient legislatorClient = HttpClientBuilder.create().build();
+        HttpGet legislatorRequest = new HttpGet(legislatorURL);
 
         // TODO: (CloseableHttpResponse) Need to change to closeable
-        HttpResponse response = client.execute(request);
-        return response;
+        HttpResponse legislatorResponse = legislatorClient.execute(legislatorRequest);
+        return legislatorResponse;
+    }
+
+    public HttpResponse sendLegislatorDetailRequest(String legislatorDetailURL) throws Exception {
+
+        HttpClient legislatorDetailClient = HttpClientBuilder.create().build();
+        HttpGet legislatorDetailRequest = new HttpGet(legislatorDetailURL);
+        HttpResponse legislatorDetailResponse = legislatorDetailClient.execute(legislatorDetailRequest);
+        return legislatorDetailResponse;
     }
 }

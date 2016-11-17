@@ -1,5 +1,6 @@
 package Manager;
 
+import DataModel.LegislatorDetail;
 import User.User;
 import DataModel.Legislator;
 import Storage.OpenStateStorage;
@@ -12,6 +13,8 @@ import org.apache.http.*;
 import java.util.ArrayList;
 
 public class OpenStateManager {
+
+    /**************************************** Legislator **************************************************************/
 
     // Get user input
     User user = new User();
@@ -37,7 +40,9 @@ public class OpenStateManager {
     // LegislatorUrl String
     String strLegislatorURL;
 
-    /********************* Legislator Details ****************************/
+    /**************************************** Legislator END **********************************************************/
+
+    /**************************************** Legislator Detail *******************************************************/
 
     // Legislator ID
     String userLegID;
@@ -45,14 +50,19 @@ public class OpenStateManager {
     // legislatorDetailURL string
     String strLegislatorDetailURL;
 
+    /**************************************** Legislator Detail *******************************************************/
 
 
     // Legislator Array
-    public ArrayList<Legislator> legislatorData;
+    public ArrayList<Legislator> legislatorArrayList;
+    public ArrayList<LegislatorDetail> legislatorDetailArrayList;
+
+
 
     public OpenStateManager() {
 
-        legislatorData = new ArrayList<>();
+        legislatorArrayList = new ArrayList<>();
+        legislatorDetailArrayList = new ArrayList<>();
 
     }
 
@@ -77,14 +87,14 @@ public class OpenStateManager {
         // TODO: (JSONDATA) Need to sort JSON data given Leg_id, first_name, last_name, id
         // OpenstateManager should go to Repository becasue it has an array of Legislators
 
-        legislatorData = stateStorage.storeLegislator(jsonStr);
+        legislatorArrayList = stateStorage.storeLegislator(jsonStr);
 
         // Send list to repository
-        stateRepo.legislatorRepo(legislatorData);
+        stateRepo.legislatorRepo(legislatorArrayList);
 
     }
 
-    public void legislatorDetail(){
+    public void legislatorDetail() throws Exception {
 
         // Ask user for legID
         userLegID = user.getlegID();
@@ -92,10 +102,26 @@ public class OpenStateManager {
         // Send userState to legislatorURL to build URL
         strLegislatorDetailURL = url.legislatorDetailUrl(userLegID);
 
+        // Get the response from the server
+        HttpResponse legislatorDetailResponse = sendOpenSR.sendLegislatorDetailRequest(strLegislatorDetailURL);
+
+        // Need to parse the Json from the response
+        String legislatorDetailJsonStr = jsonOpenSR.legislatorDetailJson(legislatorDetailResponse);
+
+        legislatorDetailArrayList = stateStorage.storeLegislatorDetail(legislatorDetailJsonStr);
+
+        // Send list to repository
+        stateRepo.legislatorDetailRepo(legislatorDetailArrayList);
+
         // Print out LegID;
         System.out.println("This is your LegID: " + userLegID);
 
         // Print out legislatorDetailURL
         System.out.println("This the legislator Details URL: " + strLegislatorDetailURL);
+
+        // Print out json
+        System.out.println("This is the legislator Details JSON: " + legislatorDetailJsonStr);
+
+
     }
 }

@@ -17,5 +17,11 @@ public class OpenStateJsonParser {
         return json;
     }
 
+    public String legislatorDetailJson(HttpResponse response) throws IOException {
+
+        String legislatorDetailJson = EntityUtils.toString(response.getEntity());
+        return legislatorDetailJson;
+    }
+
 
 }
