@@ -2,9 +2,6 @@ package User;
 
 import java.util.Scanner;
 
-/**
- * Created by tommarler on 11/16/16.
- */
 public class User implements IUser {
 
     @Override

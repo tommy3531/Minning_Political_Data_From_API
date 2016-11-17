@@ -1,4 +1,4 @@
-import OpenStates.OpenStateManager;
+import Manager.OpenStateManager;
 
 
 public class Main {
