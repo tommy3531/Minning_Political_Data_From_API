@@ -37,16 +37,26 @@ public class OpenStateManager {
     // LegislatorUrl String
     String strLegislatorURL;
 
+    /********************* Legislator Details ****************************/
+
+    // Legislator ID
+    String userLegID;
+
+    // legislatorDetailURL string
+    String strLegislatorDetailURL;
+
+
+
     // Legislator Array
-    public ArrayList<Legislator> legislatorList;
+    public ArrayList<Legislator> legislatorData;
 
     public OpenStateManager() {
 
-        legislatorList = new ArrayList<>();
+        legislatorData = new ArrayList<>();
 
     }
 
-    public void startOpenState() throws Exception {
+    public void stateLegislator() throws Exception {
 
         // Ask user to enter two digit state
         userState = user.getState();
@@ -67,17 +77,25 @@ public class OpenStateManager {
         // TODO: (JSONDATA) Need to sort JSON data given Leg_id, first_name, last_name, id
         // OpenstateManager should go to Repository becasue it has an array of Legislators
 
-        legislatorList = stateStorage.storeLegislator(jsonStr);
+        legislatorData = stateStorage.storeLegislator(jsonStr);
 
-        // Send list of repository
-        stateRepo.startOpenStartRepo(legislatorList);
+        // Send list to repository
+        stateRepo.legislatorRepo(legislatorData);
 
-        // Loop Through list on repository
-        stateRepo.legislatorItemsLoop(legislatorList);
-        //JSONArray jArray = stateStorage.storeLegislator(jsonStr);
+    }
 
-        System.out.println("This is the HTTP Code: " + responseStatus.getStatusLine().getStatusCode());
-        System.out.println("This is the responseStatus: " + responseStatus);
-        System.out.println("This is the legislatorList: " + legislatorList);
+    public void legislatorDetail(){
+
+        // Ask user for legID
+        userLegID = user.getlegID();
+
+        // Send userState to legislatorURL to build URL
+        strLegislatorDetailURL = url.legislatorDetailUrl(userLegID);
+
+        // Print out LegID;
+        System.out.println("This is your LegID: " + userLegID);
+
+        // Print out legislatorDetailURL
+        System.out.println("This the legislator Details URL: " + strLegislatorDetailURL);
     }
 }

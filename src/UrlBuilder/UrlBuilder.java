@@ -8,9 +8,11 @@ public class UrlBuilder {
 
     String baseUrl = "http://openstates.org/api/v1//legislators/";
     String apiKey = "4a8beb6a33b845edb52173f9f5764b62";
+    String legislatorFields = "&fields=first_name,last_name,leg_id";
     String strSearchState;
     String strLegislatorUrl;
-    String legislatorFields = "&fields=first_name,last_name,leg_id";
+    String strSearchLegislatorID;
+    String strLegislatorDetailUrl;
 
 
     public UrlBuilder() {
@@ -28,6 +30,19 @@ public class UrlBuilder {
 
         // legislatorUrl
         return strLegislatorUrl;
+
+    }
+
+    public String legislatorDetailUrl(String userLegID){
+
+        // Give me information according to this legislator ID
+        strSearchLegislatorID = userLegID;
+
+        // Build my Url with the LegislatorID
+        strLegislatorDetailUrl = baseUrl + strSearchLegislatorID + "/" + "?apikey=" + apiKey;
+
+        // return the legislatorDetailURL
+        return strLegislatorDetailUrl;
 
     }
 

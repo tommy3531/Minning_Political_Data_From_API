@@ -29,9 +29,7 @@ public class User implements IUser {
         // Store Leg_id entered by user
         String userRepID = scanner.next();
 
-        // Display the leg_id they entered
-        System.out.println("This is the leg_id you entered: " + userRepID);
-
+        // Return user legislator ID
         return userRepID;
     }
 }
