@@ -4,23 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import DataModel.Legislator;
 import DataModel.LegislatorDetail;
+import DataModel.Roles;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 
-public class OpenStateStorage {
+public class OpenStateStorage
+{
 
     public ArrayList<Legislator> legislatorArrayList;
     public ArrayList<LegislatorDetail> legislatorDetailArrayList;
 
-    public OpenStateStorage() {
+    public OpenStateStorage()
+    {
 
         legislatorArrayList = new ArrayList<>();
         legislatorDetailArrayList = new ArrayList<>();
 
     }
 
-    public ArrayList<Legislator> storeLegislator(String jsonResponse) throws org.json.simple.parser.ParseException {
+    public ArrayList<Legislator> storeLegislator(String jsonResponse) throws org.json.simple.parser.ParseException
+    {
 
         JSONParser parser = new JSONParser();
 
@@ -50,7 +54,8 @@ public class OpenStateStorage {
 
     }
 
-    public ArrayList<LegislatorDetail> storeLegislatorDetail(String legislatorDetailJsonResponse) throws org.json.simple.parser.ParseException {
+    public ArrayList<LegislatorDetail> storeLegislatorDetail(String legislatorDetailJsonResponse) throws org.json.simple.parser.ParseException
+    {
 
         JSONParser parser = new JSONParser();
 
@@ -68,12 +73,9 @@ public class OpenStateStorage {
         String office_address = (String) jsonObject.get("office_address");
         String email = (String) jsonObject.get("email");
         String legID = (String) jsonObject.get("leg_id");
-        String committee_id = (String) jsonObject.get("committee_id");
-        String committee = (String) jsonObject.get("committee");
-        String position = (String) jsonObject.get("position");
-        List roles = (List) jsonObject.get("roles");
+        ArrayList<Roles> roles = (ArrayList) jsonObject.get("roles");
 
-        LegislatorDetail fillLegislatorDetail = new LegislatorDetail(firstName, lastName, party, photo_url, district, level, chamber, office_address, email, legID, committee_id, committee, position, roles);
+        LegislatorDetail fillLegislatorDetail = new LegislatorDetail(firstName, lastName, party, photo_url, district, level, chamber, office_address, email, legID, roles);
 
         legislatorDetailArrayList.add(fillLegislatorDetail);
 
@@ -82,12 +84,14 @@ public class OpenStateStorage {
     }
 
     // This returns
-    public ArrayList<LegislatorDetail> getLegislatorDetailArrayList(){
+    public ArrayList<LegislatorDetail> getLegislatorDetailArrayList()
+    {
         return legislatorDetailArrayList;
     }
 
     // This returns
-    public ArrayList<Legislator> getLegislatorList(){
+    public ArrayList<Legislator> getLegislatorList()
+    {
         return legislatorArrayList;
     }
 

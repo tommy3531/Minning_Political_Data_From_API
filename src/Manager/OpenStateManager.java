@@ -12,7 +12,8 @@ import UrlBuilder.UrlBuilder;
 import org.apache.http.*;
 import java.util.ArrayList;
 
-public class OpenStateManager {
+public class OpenStateManager
+{
 
     /**************************************** Legislator **************************************************************/
 
@@ -59,14 +60,16 @@ public class OpenStateManager {
 
 
 
-    public OpenStateManager() {
+    public OpenStateManager()
+    {
 
         legislatorArrayList = new ArrayList<>();
         legislatorDetailArrayList = new ArrayList<>();
 
     }
 
-    public void stateLegislator() throws Exception {
+    public void stateLegislator() throws Exception
+    {
 
         // Ask user to enter two digit state
         userState = user.getState();
@@ -89,12 +92,13 @@ public class OpenStateManager {
 
         legislatorArrayList = stateStorage.storeLegislator(jsonStr);
 
-        // Send list to repository
+        // Send list to repository Treat list like a database
         stateRepo.legislatorRepo(legislatorArrayList);
 
     }
 
-    public void legislatorDetail() throws Exception {
+    public void legislatorDetail() throws Exception
+    {
 
         // Ask user for legID
         userLegID = user.getlegID();
@@ -108,20 +112,11 @@ public class OpenStateManager {
         // Need to parse the Json from the response
         String legislatorDetailJsonStr = jsonOpenSR.legislatorDetailJson(legislatorDetailResponse);
 
+        // Need to store the ArrayList
         legislatorDetailArrayList = stateStorage.storeLegislatorDetail(legislatorDetailJsonStr);
 
-        // Send list to repository
+        // Send list to repository Treat list like a database
         stateRepo.legislatorDetailRepo(legislatorDetailArrayList);
-
-        // Print out LegID;
-        System.out.println("This is your LegID: " + userLegID);
-
-        // Print out legislatorDetailURL
-        System.out.println("This the legislator Details URL: " + strLegislatorDetailURL);
-
-        // Print out json
-        System.out.println("This is the legislator Details JSON: " + legislatorDetailJsonStr);
-
 
     }
 }
