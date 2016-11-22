@@ -4,6 +4,7 @@ import DataModel.OpenStateLegislator;
 import DataModel.OpenStateLegislatorDetail;
 import Manager.FollowTheMoneyManager;
 import Manager.OpenStateManager;
+import Respository.FollowTheMoneyRespository;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.json.simple.JSONObject;
@@ -34,12 +35,12 @@ public class Main {
 //        String legislatorStateURL;
 //        HttpResponse openStateLegislatorResponse;
 //        String jsonLegislatorURL;
-        String openStateLegID;
+//        String openStateLegID;
 //        String legislatorLegIDURL;
 //        CloseableHttpResponse openStateLegIDResponse;
 //        String jsonLegislatorDetailURL;
 //
-        OpenStateManager stateManager = new OpenStateManager();
+//        OpenStateManager stateManager = new OpenStateManager();
 //        // Get the legislatorState
 //        legislatorState = stateManager.openStateGetState();
 //
@@ -66,7 +67,7 @@ public class Main {
 //
 //
         // Get the leg_id
-        openStateLegID = stateManager.openStateGetLegID();
+//        openStateLegID = stateManager.openStateGetLegID();
 //
 //        // Print out the leg_id
 //        System.out.println("This is the leg_id: " + openStateLegID);
@@ -96,49 +97,51 @@ public class Main {
 //        stateRepo.getLegislatorByLegID(openStateLegislatorList, "MOL000417");
 //        stateRepo.getLegislatorByLastName(openStateLegislatorList, "Wasson");
 //        stateRepo.getLegislatorDetailByLegID(openStateLegislatorDetailList, "MOL000417");
-/***************** Working on FollowTheMOney STUFF ********************************************************************/
+/*****************  FollowTheMOney ************************************************************************************/
 
-        FollowTheMoneyManager moneyManager = new FollowTheMoneyManager();
-        // Get the hash
-        HashMap followTheMoneyHash = new HashMap();
-        File file = new File("ID.txt");
-        followTheMoneyHash = (HashMap) moneyManager.hashMapForID(file);
+//        FollowTheMoneyManager moneyManager = new FollowTheMoneyManager();
+//        // Get the hash
+//        HashMap followTheMoneyHash = new HashMap();
+//        File file = new File("ID.txt");
+//        followTheMoneyHash = (HashMap) moneyManager.hashMapForID(file);
+//
+//        // Get the FollowTheMoneyID from the OpenStateID
+//        String followTheMoneyID = moneyManager.findFollowMoneyIDFromOpenStateID(openStateLegID);
+//
+//        System.out.println(followTheMoneyID);
+//
+//        //BuildURL
+//        String followTheMoneyURL = moneyManager.followTheMoneyURL(followTheMoneyID);
+//
+//        System.out.println(followTheMoneyURL);
+//
+//        //Get the response
+//        CloseableHttpResponse moneyResponse;
+//        moneyResponse = moneyManager.followTheMoneyResponse(followTheMoneyURL);
+//
+//        System.out.println("This is from Main.java Response: " + moneyResponse);
+//
+//
+//        // Get the json
+//        String followTheMoneyJson = moneyManager.followTheMoneyJson(moneyResponse);
+//
+//        System.out.println("This is from Main.java: " + followTheMoneyJson);
+//
+//        // Fill ArrayList
+//        followTheMoneyArrayList = moneyManager.followTheMoneyFillLegislatorArrayList(followTheMoneyJson);
+//
+//        // Close
+//        moneyResponse.close();
 
-        // Get the FollowTheMoneyID from the OpenStateID
-        String followTheMoneyID = moneyManager.findFollowMoneyIDFromOpenStateID(openStateLegID);
 
-        System.out.println(followTheMoneyID);
+/***************** END FollowTheMOney STUFF ***************************************************************************/
 
-        //BuildURL
-        String followTheMoneyURL = moneyManager.followTheMoneyURL(followTheMoneyID);
-
-        System.out.println(followTheMoneyURL);
-
-        //Get the response
-        CloseableHttpResponse moneyResponse;
-        moneyResponse = moneyManager.followTheMoneyResponse(followTheMoneyURL);
-
-        System.out.println("This is from Main.java Response: " + moneyResponse);
-
-
-        // Get the json
-        String followTheMoneyJson = moneyManager.followTheMoneyJson(moneyResponse);
-
-        System.out.println("This is from Main.java: " + followTheMoneyJson);
-
-        // Fill ArrayList
-        followTheMoneyArrayList = moneyManager.followTheMoneyFillLegislatorArrayList(followTheMoneyJson);
-
-
-        // Close
-        moneyResponse.close();
-
+//        // Start of FollowTheMoneyRespository
+//        FollowTheMoneyRespository moneyRespository = new FollowTheMoneyRespository();
+//        moneyRespository.getFollowTheMoneyLegislatorData(followTheMoneyArrayList);
 
     }
 }
-
-
-
 /***************************** OpenFEC Code ***************************************************************************/
 //        String govTrackCandidate_id = "https://api.open.fec.gov/v1/candidates/?candidate_status=C&incumbent_challenge=I&per_page=20&state=mo&api_key=AVpaPd4e2VB1GLoPCOg8BSfFSpbMQQJwA7krAqsq&page=1";
 //
@@ -216,6 +219,17 @@ public class Main {
 //        }
         /*********************************** Follow The Money *****************************************************************/
 
+
+
+
+
+//}
+//        OpenStateRepository stateRepo = new OpenStateRepository();
+//        stateRepo.getLegislatorData(openStateLegislatorList);
+//        stateRepo.getLegislatorDetailData(openStateLegislatorDetailList);
+//        stateRepo.getLegislatorByLegID(openStateLegislatorList, "MOL000417");
+//        stateRepo.getLegislatorByLastName(openStateLegislatorList, "Wasson");
+//        stateRepo.getLegislatorDetailByLegID(openStateLegislatorDetailList, "MOL000417");
 
 
 

@@ -31,6 +31,7 @@ public class FollowTheMoneyStorage {
         JSONObject object = new JSONObject(metaInfo);
         JSONArray getArray = (JSONArray) object.get("records");
 
+        // TODO: (Clean) Need to clean up this code and also need to load the class object
         for (Object obj55 : getArray) {
             JSONObject jsonObject1 = (JSONObject) obj55;
             JSONObject a = (JSONObject) jsonObject1.get("Candidate");
@@ -45,18 +46,18 @@ public class FollowTheMoneyStorage {
             JSONObject j = (JSONObject) jsonObject1.get("Occupation");
             JSONObject k = (JSONObject) jsonObject1.get("Amount");
             String candidate = (String) a.get("Candidate");
-            System.out.println("This is the Specific_Party: " + b.get("Specific_Party"));
-            System.out.println("This is the Election_Year: " + c.get("Election_Year"));
-            System.out.println("This is the Office_Sought: " + d.get("Office_Sought"));
-            System.out.println("This is the Election_Status: " + e.get("Election_Status"));
-            System.out.println("This is the Status_of_Candidate: " + f.get("Status_of_Candidate"));
-            System.out.println("This is the Type_of_Contributor: " + g.get("Type_of_Contributor"));
-            System.out.println("This is the State: " + h.get("State"));
-            System.out.println("This is the Employer: " + i.get("Employer"));
-            System.out.println("This is the Occupation: " + j.get("Occupation"));
-            System.out.println("This is the Amount: " + "$" + k.get("Amount") + "\n");
+            String specific_Party = (String) b.get("Specific_Party");
+            String election_Year = (String) c.get("Election_Year");
+            String office_sought = (String) d.get("Office_Sought");
+            String election_Status = (String) e.get("Election_Status");
+            String status_Of_Candidate = (String) f.get("Status_of_Candidate");
+            String type_of_Contributor = (String) g.get("Type_of_Contributor");
+            String state = (String) h.get("State");
+            String employer = (String) i.get("Employer");
+            String occupation = (String) j.get("Occupation");
+            String amount =  "$" + k.get("Amount") + "\n";
 
-            FollowTheMoneyLegislator moneyLegislator = new FollowTheMoneyLegislator(candidate);
+            FollowTheMoneyLegislator moneyLegislator = new FollowTheMoneyLegislator(candidate, specific_Party, election_Year, office_sought, election_Status, status_Of_Candidate, type_of_Contributor, state, employer, occupation, amount);
             followTheMoneyArrayList.add(moneyLegislator);
 
         }

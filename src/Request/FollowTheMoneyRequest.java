@@ -21,7 +21,7 @@ public class FollowTheMoneyRequest {
         HttpGet followTheMoneyRequest = new HttpGet(legislatorURL);
 
         // TODO: (CloseableHttpResponse) Need to change to closeable
-        HttpResponse FollowTheMoneyResponse = followTheMoneyClient.execute(followTheMoneyRequest);
-        return FollowTheMoneyResponse;
+        HttpResponse followTheMoneyResponse = followTheMoneyClient.execute(followTheMoneyRequest);
+        return followTheMoneyResponse;
     }
 }
