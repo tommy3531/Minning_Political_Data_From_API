@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by MikeWitter on 11/17/16.
  */
-public class LegislatorDetail
+public class OpenStateLegislatorDetail
 {
 
     public String first_name;
@@ -22,14 +22,14 @@ public class LegislatorDetail
     public ArrayList<Roles> roles;
 
 
-    public LegislatorDetail()
+    public OpenStateLegislatorDetail()
     {
 
     }
 
-    public LegislatorDetail(String first_name, String last_name, String party, String photo_url, String district,
-                            String level, String chamber, String office_address, String email, String leg_id,
-                            ArrayList<Roles> roles)
+    public OpenStateLegislatorDetail(String first_name, String last_name, String party, String photo_url, String district,
+                                     String level, String chamber, String office_address, String email, String leg_id,
+                                     ArrayList<Roles> roles)
     {
 
         this.first_name = first_name;

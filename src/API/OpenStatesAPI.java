@@ -1,8 +1,9 @@
-package User;
+package API;
 
 import java.util.Scanner;
 
-public class User implements IUser {
+public class OpenStatesAPI implements IOpenStatesAPI
+{
 
     @Override
     public String getState() {

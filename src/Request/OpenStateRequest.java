@@ -11,7 +11,7 @@ public class OpenStateRequest {
 
     }
 
-    public HttpResponse sendLegislatorRequest(String legislatorURL) throws Exception {
+    public HttpResponse OpenStateSendRequest(String legislatorURL) throws Exception {
 
         HttpClient legislatorClient = HttpClientBuilder.create().build();
         HttpGet legislatorRequest = new HttpGet(legislatorURL);
@@ -21,7 +21,7 @@ public class OpenStateRequest {
         return legislatorResponse;
     }
 
-    public HttpResponse sendLegislatorDetailRequest(String legislatorDetailURL) throws Exception {
+    public HttpResponse OpenStateSendDetailRequest(String legislatorDetailURL) throws Exception {
 
         HttpClient legislatorDetailClient = HttpClientBuilder.create().build();
         HttpGet legislatorDetailRequest = new HttpGet(legislatorDetailURL);

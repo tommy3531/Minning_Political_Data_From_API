@@ -1,39 +1,39 @@
 package Manager;
 
-import DataModel.LegislatorDetail;
-import User.User;
-import DataModel.Legislator;
+import DataModel.OpenStateLegislatorDetail;
+import API.OpenStatesAPI;
+import DataModel.OpenStateLegislator;
 import Storage.OpenStateStorage;
 import Request.OpenStateRequest;
-import Parser.OpenStateJsonParser;
-import Respository.OpenStateRepository;
-import UrlBuilder.UrlBuilder;
+import Response.OpenStateJsonResponse;
+import UrlBuilder.OpenStateUrlBuilder;
 
 import org.apache.http.*;
+import org.apache.http.client.methods.CloseableHttpResponse;
+
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class OpenStateManager
 {
 
-    /**************************************** Legislator **************************************************************/
+    /**************************************** OpenStateLegislator **************************************************************/
 
     // Get user input
-    User user = new User();
+    OpenStatesAPI state = new OpenStatesAPI();
 
     // Build Url
-    UrlBuilder url = new UrlBuilder();
+    OpenStateUrlBuilder stateURL = new OpenStateUrlBuilder();
 
     // Send HttpRequest
-    OpenStateRequest sendOpenSR = new OpenStateRequest();
+    OpenStateRequest openStateRequestMain = new OpenStateRequest();
 
     // Parse the Json
-    OpenStateJsonParser jsonOpenSR = new OpenStateJsonParser();
+    OpenStateJsonResponse openStateJsonMain = new OpenStateJsonResponse();
 
-    // Need to store the parsed JSON
-    OpenStateStorage stateStorage = new OpenStateStorage();
-
-    // Ned to send to repository
-    OpenStateRepository stateRepo = new OpenStateRepository();
+    // Store JSON
+    OpenStateStorage openStateStorageMain = new OpenStateStorage();
 
     // Store User State
     String userState;
@@ -41,82 +41,127 @@ public class OpenStateManager
     // LegislatorUrl String
     String strLegislatorURL;
 
-    /**************************************** Legislator END **********************************************************/
+    /**************************************** OpenStateLegislator END **********************************************************/
 
-    /**************************************** Legislator Detail *******************************************************/
+    /**************************************** OpenStateLegislator Detail *******************************************************/
 
-    // Legislator ID
+    // OpenStateLegislator ID
     String userLegID;
 
     // legislatorDetailURL string
     String strLegislatorDetailURL;
 
-    /**************************************** Legislator Detail *******************************************************/
+    /**************************************** OpenStateLegislator Detail *******************************************************/
 
 
-    // Legislator Array
-    public ArrayList<Legislator> legislatorArrayList;
-    public ArrayList<LegislatorDetail> legislatorDetailArrayList;
+    // OpenStateLegislator Array
+    public ArrayList<OpenStateLegislator> openStateLegislatorArrayList;
+    public ArrayList<OpenStateLegislatorDetail> openStateLegislatorDetailArrayList;
 
 
 
     public OpenStateManager()
     {
 
-        legislatorArrayList = new ArrayList<>();
-        legislatorDetailArrayList = new ArrayList<>();
+        openStateLegislatorArrayList = new ArrayList<>();
+        openStateLegislatorDetailArrayList = new ArrayList<>();
 
     }
 
-    public void stateLegislator() throws Exception
+    public String openStateGetState()
     {
-
         // Ask user to enter two digit state
-        userState = user.getState();
+        userState = state.getState();
 
+        // return userState
+        return userState;
+    }
+
+    public String openStateBuildLegislatorStateUrl(String legislatorState)
+    {
         // Send userState to legislatorURL to build URL
-        strLegislatorURL = url.legislatorUrl(userState);
-        System.out.println("This is the strLegislatorURL: " + strLegislatorURL);
+        strLegislatorURL = stateURL.OpenStatelegislatorUrl(legislatorState);
+
+        //return legislatorURL
+        return strLegislatorURL;
+    }
+
+    public HttpResponse openStateLegislatorResponse(String legislatorStateURL) throws Exception {
 
         // TODO: (CloseableHttpResponse) Change HttpResponse to closeable HTTResponse
-
         // Send request to OpenstateAPI
-        HttpResponse responseStatus = sendOpenSR.sendLegislatorRequest(strLegislatorURL);
+        HttpResponse responseStatus = openStateRequestMain.OpenStateSendRequest(legislatorStateURL);
 
-        // Need to parse the Json from the response
-        String jsonStr = jsonOpenSR.legislatorJson(responseStatus);
-
-        // Need to store legislatorData
-        // TODO: (JSONDATA) Need to sort JSON data given Leg_id, first_name, last_name, id
-        // OpenstateManager should go to Repository becasue it has an array of Legislators
-
-        legislatorArrayList = stateStorage.storeLegislator(jsonStr);
-
-        // Send list to repository Treat list like a database
-        stateRepo.legislatorRepo(legislatorArrayList);
+        // return response
+        return responseStatus;
 
     }
 
-    public void legislatorDetail() throws Exception
+    public String openStateJson(HttpResponse urlResponse) throws IOException {
+
+        // Need to parse the Json from the response
+        String jsonStr = openStateJsonMain.OpenStatelegislatorJson(urlResponse);
+
+        // return json String from legislator url
+        return jsonStr;
+    }
+
+    public ArrayList<OpenStateLegislator> openStateFillStateLegislatorArrayList(String jsonStr) throws Exception
     {
 
-        // Ask user for legID
-        userLegID = user.getlegID();
+        // TODO: (JSONDATA) Need to sort JSON data given Leg_id, first_name, last_name, id
+        openStateLegislatorArrayList = openStateStorageMain.storeLegislator(jsonStr);
 
-        // Send userState to legislatorURL to build URL
-        strLegislatorDetailURL = url.legislatorDetailUrl(userLegID);
-
-        // Get the response from the server
-        HttpResponse legislatorDetailResponse = sendOpenSR.sendLegislatorDetailRequest(strLegislatorDetailURL);
-
-        // Need to parse the Json from the response
-        String legislatorDetailJsonStr = jsonOpenSR.legislatorDetailJson(legislatorDetailResponse);
-
-        // Need to store the ArrayList
-        legislatorDetailArrayList = stateStorage.storeLegislatorDetail(legislatorDetailJsonStr);
-
-        // Send list to repository Treat list like a database
-        stateRepo.legislatorDetailRepo(legislatorDetailArrayList);
+        // return ArrayList
+        return openStateLegislatorArrayList;
 
     }
+
+    public String openStateGetLegID()
+    {
+        // Ask user for legID
+        userLegID = state.getlegID();
+
+        // return legID
+        return userLegID;
+    }
+
+    public String openStateBuildLegislatorLegIDUrl(String legID)
+    {
+        // Send userState to legislatorURL to build URL
+        strLegislatorURL = stateURL.OpenStatelegislatorDetailUrl(legID);
+
+        // return URL string
+        return strLegislatorURL;
+    }
+
+    public CloseableHttpResponse openStateLegislatorDetailResponse(String strLegislatorDetailURL) throws Exception {
+
+        // Get the response from the server
+        CloseableHttpResponse legislatorDetailResponse = (CloseableHttpResponse) openStateRequestMain.OpenStateSendDetailRequest(strLegislatorDetailURL);
+
+        // return HttpResponse
+        return legislatorDetailResponse;
+    }
+
+    public String openStateDetailJson(HttpResponse legislatorDetailResponse) throws IOException {
+
+        // Need to parse the Json from the response
+        String legislatorDetailJsonStr = openStateJsonMain.OpenStatelegislatorDetailJson(legislatorDetailResponse);
+
+        // return detail json str
+        return legislatorDetailJsonStr;
+    }
+
+    public ArrayList<OpenStateLegislatorDetail> openStateFillStateLegislatorDetailArrayList(String legislatorDetailJsonStr) throws Exception
+    {
+
+        // Need to store the ArrayList
+        openStateLegislatorDetailArrayList = openStateStorageMain.storeLegislatorDetail(legislatorDetailJsonStr);
+
+        // Return ArrayList
+        return openStateLegislatorDetailArrayList;
+
+    }
+
 }

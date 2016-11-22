@@ -1,18 +1,18 @@
 package DataModel;
 
-public class Legislator
+public class OpenStateLegislator
 {
 
     public String first_name;
     public String last_name;
     public String leg_id;
 
-    public Legislator()
+    public OpenStateLegislator()
     {
 
     }
 
-    public Legislator(String first_name, String last_name, String leg_id)
+    public OpenStateLegislator(String first_name, String last_name, String leg_id)
     {
         this.first_name = first_name;
         this.last_name = last_name;

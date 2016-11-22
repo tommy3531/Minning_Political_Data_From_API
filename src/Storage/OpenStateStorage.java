@@ -1,9 +1,9 @@
 package Storage;
 
 import java.util.ArrayList;
-import java.util.List;
-import DataModel.Legislator;
-import DataModel.LegislatorDetail;
+
+import DataModel.OpenStateLegislator;
+import DataModel.OpenStateLegislatorDetail;
 import DataModel.Roles;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,18 +12,18 @@ import org.json.simple.JSONArray;
 public class OpenStateStorage
 {
 
-    public ArrayList<Legislator> legislatorArrayList;
-    public ArrayList<LegislatorDetail> legislatorDetailArrayList;
+    public ArrayList<OpenStateLegislator> openStateLegislatorArrayList;
+    public ArrayList<OpenStateLegislatorDetail> openStateLegislatorDetailArrayList;
 
     public OpenStateStorage()
     {
 
-        legislatorArrayList = new ArrayList<>();
-        legislatorDetailArrayList = new ArrayList<>();
+        openStateLegislatorArrayList = new ArrayList<>();
+        openStateLegislatorDetailArrayList = new ArrayList<>();
 
     }
 
-    public ArrayList<Legislator> storeLegislator(String jsonResponse) throws org.json.simple.parser.ParseException
+    public ArrayList<OpenStateLegislator> storeLegislator(String jsonResponse) throws org.json.simple.parser.ParseException
     {
 
         JSONParser parser = new JSONParser();
@@ -44,17 +44,17 @@ public class OpenStateStorage
             String lastName = (String) jsonObject.get("last_name");
             String legID = (String) jsonObject.get("leg_id");
 
-            Legislator fillLegislator = new Legislator(firstName, lastName, legID);
+            OpenStateLegislator fillOpenStateLegislator = new OpenStateLegislator(firstName, lastName, legID);
 
-            legislatorArrayList.add(fillLegislator);
+            openStateLegislatorArrayList.add(fillOpenStateLegislator);
 
         }
 
-        return legislatorArrayList;
+        return openStateLegislatorArrayList;
 
     }
 
-    public ArrayList<LegislatorDetail> storeLegislatorDetail(String legislatorDetailJsonResponse) throws org.json.simple.parser.ParseException
+    public ArrayList<OpenStateLegislatorDetail> storeLegislatorDetail(String legislatorDetailJsonResponse) throws org.json.simple.parser.ParseException
     {
 
         JSONParser parser = new JSONParser();
@@ -75,24 +75,24 @@ public class OpenStateStorage
         String legID = (String) jsonObject.get("leg_id");
         ArrayList<Roles> roles = (ArrayList) jsonObject.get("roles");
 
-        LegislatorDetail fillLegislatorDetail = new LegislatorDetail(firstName, lastName, party, photo_url, district, level, chamber, office_address, email, legID, roles);
+        OpenStateLegislatorDetail fillOpenStateLegislatorDetail = new OpenStateLegislatorDetail(firstName, lastName, party, photo_url, district, level, chamber, office_address, email, legID, roles);
 
-        legislatorDetailArrayList.add(fillLegislatorDetail);
+        openStateLegislatorDetailArrayList.add(fillOpenStateLegislatorDetail);
 
-        return legislatorDetailArrayList;
+        return openStateLegislatorDetailArrayList;
 
     }
 
     // This returns
-    public ArrayList<LegislatorDetail> getLegislatorDetailArrayList()
+    public ArrayList<OpenStateLegislatorDetail> getOpenStateLegislatorDetailArrayList()
     {
-        return legislatorDetailArrayList;
+        return openStateLegislatorDetailArrayList;
     }
 
     // This returns
-    public ArrayList<Legislator> getLegislatorList()
+    public ArrayList<OpenStateLegislator> getLegislatorList()
     {
-        return legislatorArrayList;
+        return openStateLegislatorArrayList;
     }
 
 
