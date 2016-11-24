@@ -5,7 +5,7 @@ public class OpenStateUrlBuilder {
     String baseUrl = "http://openstates.org/api/v1//legislators/";
     String apiKey = "4a8beb6a33b845edb52173f9f5764b62";
     String legislatorFields = "&fields=first_name,last_name,leg_id";
-    String legislatorDetailFields = "&fields=party,photo_url,district,level,chamber,office_address,email,leg_id,committee_id,committee,position";
+    String legislatorDetailFields = "&fields=first_name,last_name,party,photo_url,district,level,chamber,office_address,email,leg_id,committee_id,committee,position,roles";
     String strSearchState;
     String strLegislatorUrl;
     String strSearchLegislatorID;

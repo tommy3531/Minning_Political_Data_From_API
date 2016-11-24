@@ -19,6 +19,9 @@ public class OpenStateLegislatorDetail
     public String office_address;
     public String email;
     public String leg_id;
+    public String committee_id;
+    public String committee;
+    public String position;
     public ArrayList<Roles> roles;
 
 
@@ -29,7 +32,7 @@ public class OpenStateLegislatorDetail
 
     public OpenStateLegislatorDetail(String first_name, String last_name, String party, String photo_url, String district,
                                      String level, String chamber, String office_address, String email, String leg_id,
-                                     ArrayList<Roles> roles)
+                                     String committee_id, String committee, String position, ArrayList<Roles> roles)
     {
 
         this.first_name = first_name;
@@ -42,6 +45,9 @@ public class OpenStateLegislatorDetail
         this.office_address = office_address;
         this.email = email;
         this.leg_id = leg_id;
+        this.committee_id = committee_id;
+        this.committee = committee;
+        this.position = position;
         this.roles = roles;
     }
 
@@ -176,6 +182,39 @@ public class OpenStateLegislatorDetail
         this.leg_id = leg_id;
     }
 
+    // Committee_id
+    public String getCommittee_id()
+    {
+        return committee_id;
+    }
+
+    public void setCommittee_id(String committee_id)
+    {
+        this.committee_id = committee_id;
+    }
+
+    // Committee
+    public String getCommittee()
+    {
+        return committee;
+    }
+
+    public void setCommittee(String committee)
+    {
+        this.committee = committee;
+    }
+
+    // Position
+    public String getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition(String position)
+    {
+        this.position = position;
+    }
+
     // Roles
     public ArrayList<Roles> getRoles()
     {
@@ -184,7 +223,6 @@ public class OpenStateLegislatorDetail
 
     public void setRoles(ArrayList<Roles> roles)
     {
-
         this.roles = roles;
     }
 

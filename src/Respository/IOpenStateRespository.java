@@ -10,7 +10,7 @@ public interface IOpenStateRespository
 
     // DataBase method for OpenState
     ArrayList<OpenStateLegislator> getLegislatorData(ArrayList<OpenStateLegislator> openStateLegislatorList);
-    ArrayList<OpenStateLegislatorDetail> getLegislatorDetailData(ArrayList<OpenStateLegislatorDetail> openStateLegislatorDetailList);
+    ArrayList<OpenStateLegislatorDetail> getLegislatorDetailData(ArrayList<OpenStateLegislatorDetail> openStateLegislatorDetailItems);
     void getLegislatorByLegID(ArrayList<OpenStateLegislator> openStateLegislatorItems, String leg_id);
     void getLegislatorByLastName(ArrayList<OpenStateLegislator> openStateLegislatorItems, String firstName);
 

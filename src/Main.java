@@ -5,6 +5,7 @@ import Manager.OpenFECManager;
 import Manager.OpenStateManager;
 import Respository.FollowTheMoneyRespository;
 import Respository.GovTrackRespository;
+import Respository.OpenStateRepository;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.sun.org.apache.xpath.internal.Arg;
 import org.apache.http.HttpResponse;
@@ -33,125 +34,135 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-//        String legislatorState;
-//        String legislatorStateURL;
-//        HttpResponse openStateLegislatorResponse;
-//        String jsonLegislatorURL;
-//        String openStateLegID;
-//        String legislatorLegIDURL;
-//        CloseableHttpResponse openStateLegIDResponse;
-//        String jsonLegislatorDetailURL;
-//
-//        OpenStateManager stateManager = new OpenStateManager();
-//        // Get the legislatorState
-//        legislatorState = stateManager.openStateGetState();
-//
-//        // Print out the state entered by user
-//        System.out.println("This is the state value you entered: " + legislatorState);
-//
-//        // Build the legislatorState URL
-//        legislatorStateURL = stateManager.openStateBuildLegislatorStateUrl(legislatorState);
-//
-//        // Print out the legislatorState URL
-//        System.out.println("This is the legislatorStateURL: " + legislatorStateURL);
-//
-//        // Get the response from the legislatorStateURL
-//        openStateLegislatorResponse = stateManager.openStateLegislatorResponse(legislatorStateURL);
-//
-//        // Print out the legislatorStateURL Response
-//        System.out.println("This is the openStateLegisaltorResponse: " + openStateLegislatorResponse.getStatusLine());
-//
-//        // Get JSON for the legislatorURL
-//        jsonLegislatorURL = stateManager.openStateJson(openStateLegislatorResponse);
-//
-//        // Fill the Array
-//        openStateLegislatorList = stateManager.openStateFillStateLegislatorArrayList(jsonLegislatorURL);
-//
-//
+        String legislatorState;
+        String legislatorStateURL;
+        HttpResponse openStateLegislatorResponse;
+        String jsonLegislatorURL;
+        String openStateLegID;
+        String legislatorLegIDURL;
+        CloseableHttpResponse openStateLegIDResponse;
+        String jsonLegislatorDetailURL;
+
+        OpenStateManager stateManager = new OpenStateManager();
+
+        // Get the legislatorState
+        legislatorState = stateManager.openStateGetState();
+
+        // Print out the state entered by user
+        System.out.println("This is the state value you entered: " + legislatorState);
+
+        // Build the legislatorState URL
+        legislatorStateURL = stateManager.openStateBuildLegislatorStateUrl(legislatorState);
+
+        // Print out the legislatorState URL
+         System.out.println("This is the legislatorStateURL: " + legislatorStateURL);
+
+        // Get the response from the legislatorStateURL
+        openStateLegislatorResponse = stateManager.openStateLegislatorResponse(legislatorStateURL);
+
+        // Print out the legislatorStateURL Response
+         System.out.println("This is the openStateLegisaltorResponse: " + openStateLegislatorResponse.getStatusLine());
+
+        // Get JSON for the legislatorURL
+        jsonLegislatorURL = stateManager.openStateJson(openStateLegislatorResponse);
+
+        // Fill the Array
+        openStateLegislatorList = stateManager.openStateFillStateLegislatorArrayList(jsonLegislatorURL);
+
         // Get the leg_id
-//        openStateLegID = stateManager.openStateGetLegID();
-//
+        openStateLegID = stateManager.openStateGetLegID();
+
 //        // Print out the leg_id
-//        System.out.println("This is the leg_id: " + openStateLegID);
+//         System.out.println("This is the leg_id: " + openStateLegID);
 //
 //        // Build the URL with the leg_id
-//        legislatorLegIDURL = stateManager.openStateBuildLegislatorLegIDUrl(openStateLegID);
+        legislatorLegIDURL = stateManager.openStateBuildLegislatorLegIDUrl(openStateLegID);
 //
 //        // Print out the URL with the leg_id
-//        System.out.println("This is the URL with the leg_id: " + legislatorLegIDURL);
+//         System.out.println("This is the URL with the leg_id: " + legislatorLegIDURL);
 //
 //        // Get the response from the legislatorStateURL
-//        openStateLegIDResponse = stateManager.openStateLegislatorDetailResponse(legislatorLegIDURL);
+        openStateLegIDResponse = stateManager.openStateLegislatorDetailResponse(legislatorLegIDURL);
 //
 //        // Print out the response code
-//        System.out.println("This is the response for the leg_id URL: " + openStateLegIDResponse.getStatusLine());
+////         System.out.println("This is the response for the leg_id URL: " + openStateLegIDResponse.getStatusLine());
+////        System.out.println("This is the response for the legIDjson: " + openStateLegIDResponse);
 //
 //        // Get JSON for the legislatorDetailURL
-//        jsonLegislatorDetailURL = stateManager.openStateDetailJson(openStateLegIDResponse);
+        jsonLegislatorDetailURL = stateManager.openStateDetailJson(openStateLegIDResponse);
+//
+//        System.out.println(jsonLegislatorDetailURL);
 //
 //        // Fill the Array
-//        openStateLegislatorDetailList = stateManager.openStateFillStateLegislatorDetailArrayList(jsonLegislatorDetailURL);
-//        openStateLegIDResponse.close();
-/*********** OpenRespository ******************************************************************************************/
-//        OpenStateRepository stateRepo = new OpenStateRepository();
-//        stateRepo.getLegislatorData(openStateLegislatorList);
-//        stateRepo.getLegislatorDetailData(openStateLegislatorDetailList);
-//        stateRepo.getLegislatorByLegID(openStateLegislatorList, "MOL000417");
-//        stateRepo.getLegislatorByLastName(openStateLegislatorList, "Wasson");
-//        stateRepo.getLegislatorDetailByLegID(openStateLegislatorDetailList, "MOL000417");
-/*****************  FollowTheMoney ************************************************************************************/
-
-//        http://api.followthemoney.org/?c-t-eid=3837002&gro=d-id,c-t-id,c-t-sts,d-empl,d-occupation&APIKey=4bed8fe186974ce2df75046bb3f3f220&mode=json
-//        FollowTheMoneyManager moneyManager = new FollowTheMoneyManager();
-//        // Get the hash
-//        HashMap followTheMoneyHash = new HashMap();
-//        File file = new File("ID.txt");
-//        followTheMoneyHash = (HashMap) moneyManager.hashMapForID(file);
+        openStateLegislatorDetailList = stateManager.openStateFillStateLegislatorDetailArrayList(jsonLegislatorDetailURL);
 //
-//        // Get the FollowTheMoneyID from the OpenStateID
-//        String followTheMoneyID = moneyManager.findFollowMoneyIDFromOpenStateID(openStateLegID);
+        openStateLegIDResponse.close();
+///*********** OpenRespository ******************************************************************************************/
+        OpenStateRepository stateRepo = new OpenStateRepository();
+////        stateRepo.getLegislatorData(openStateLegislatorList);
+////        stateRepo.getLegislatorDetailData(openStateLegislatorDetailList);
+////        stateRepo.getLegislatorByLegID(openStateLegislatorList, openStateLegID);
+////        stateRepo.getLegislatorByLastName(openStateLegislatorList, "Wasson");
+        stateRepo.getLegislatorDetailByLegID(openStateLegislatorDetailList, openStateLegID);
+///*****************  FollowTheMoney ************************************************************************************/
 //
-//        System.out.println(followTheMoneyID);
-//
-//        //BuildURL
-//        String followTheMoneyURL = moneyManager.followTheMoneyURL(followTheMoneyID);
-//
-//        System.out.println(followTheMoneyURL);
-//
-//        //Get the response
-//        CloseableHttpResponse moneyResponse;
-//        moneyResponse = moneyManager.followTheMoneyResponse(followTheMoneyURL);
-//
-//        System.out.println("This is from Main.java Response: " + moneyResponse);
-//
-//
-//        // Get the json
-//        String followTheMoneyJson = moneyManager.followTheMoneyJson(moneyResponse);
-//
-//        System.out.println("This is from Main.java: " + followTheMoneyJson);
-//
-//        // Fill ArrayList
-//        followTheMoneyArrayList = moneyManager.followTheMoneyFillLegislatorArrayList(followTheMoneyJson);
-//
-//        // Close
-//        moneyResponse.close();
+//        //http://api.followthemoney.org/?c-t-eid=3837002&gro=d-id,c-t-id,c-t-sts,d-empl,d-occupation&APIKey=4bed8fe186974ce2df75046bb3f3f220&mode=json
+        FollowTheMoneyManager moneyManager = new FollowTheMoneyManager();
+////
+////        // Get the hash
+        HashMap followTheMoneyHash = new HashMap();
+////
+        File followTheMoneyFile = new File("ID.txt");
+        followTheMoneyHash = (HashMap) moneyManager.hashMapForID(followTheMoneyFile);
+////
+////        // Get the FollowTheMoneyID from the OpenStateID
+        String followTheMoneyID = moneyManager.findFollowMoneyIDFromOpenStateID(openStateLegID);
+////
+////        //System.out.println(followTheMoneyID);
+////
+////        //BuildURL
+        String followTheMoneyURL = moneyManager.followTheMoneyURL(followTheMoneyID);
+////
+////        //System.out.println(followTheMoneyURL);
+////
+////        //Get the response
+        CloseableHttpResponse moneyResponse;
+        moneyResponse = moneyManager.followTheMoneyResponse(followTheMoneyURL);
+////
+////        //System.out.println("This is from Main.java Response: " + moneyResponse);
+////
+////
+////        // Get the json
+        String followTheMoneyJson = moneyManager.followTheMoneyJson(moneyResponse);
+////
+////        //System.out.println("This is from Main.java: " + followTheMoneyJson);
+////
+////        // Fill ArrayList
+        followTheMoneyArrayList = moneyManager.followTheMoneyFillLegislatorArrayList(followTheMoneyJson);
+////
+////        // Close
+        moneyResponse.close();
 
 
 /***************** END FollowTheMoney  *******************************************************************************/
 
-//        // Start of FollowTheMoneyRespository
-//        FollowTheMoneyRespository moneyRespository = new FollowTheMoneyRespository();
-//        moneyRespository.getFollowTheMoneyLegislatorData(followTheMoneyArrayList);
+        // Start of FollowTheMoneyRespository
+        FollowTheMoneyRespository moneyRespository = new FollowTheMoneyRespository();
+        moneyRespository.getFollowTheMoneyLegislatorData(followTheMoneyArrayList);
 
 //    }
 //}
 /***************************** GovTrack Code ***************************************************************************/
+
+        // TODO: (GOVTRACK) Need to find a way to search by legislator ID from openStates
         GovTrackManager govManager = new GovTrackManager();
         GovTrackRespository govRespository = new GovTrackRespository();
         ArrayList<GovTrackLegislator> govTrackLegislatorArrayList;
-        File file = new File("legislator-current.json");
-        govTrackLegislatorArrayList = govManager.getGovTrackList(file);
-        //govRespository.getGovTrackLegislatorData(govTrackLegislatorArrayList);
+        File govTrackfile = new File("legislator-current.json");
+        govTrackLegislatorArrayList = govManager.getGovTrackList(govTrackfile);
+//
+//        // TODO: Need to search by leg id in govTrack
+//        //govRespository.getGovTrackLegislatorData(govTrackLegislatorArrayList);
         String legid = "400050";
         govRespository.getGovTrackLegislatorDataByID(legid, govTrackLegislatorArrayList);
 

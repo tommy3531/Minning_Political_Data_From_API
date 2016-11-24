@@ -2,6 +2,7 @@ package Respository;
 
 import DataModel.OpenStateLegislator;
 import DataModel.OpenStateLegislatorDetail;
+import DataModel.Roles;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import java.util.ArrayList;
@@ -21,58 +22,46 @@ public class OpenStateRepository implements IOpenStateRespository {
 
     @Override
     public ArrayList<OpenStateLegislator> getLegislatorData(ArrayList<OpenStateLegislator> openStateLegislatorList) {
-        //System.out.println("This is the legislatorRepo: ");
+        System.out.println("This is the legislatorRepo: ");
 
         for (OpenStateLegislator leg : openStateLegislatorList) {
-            System.out.println("This is the firstName: " + leg.first_name);
-            System.out.println("This is the LastName: " + leg.last_name);
-            System.out.println("This is the Leg_id: " + leg.leg_id + "\n");
+            System.out.println("This is the OpenState firstName: " + leg.first_name);
+            System.out.println("This is the OpenState LastName: " + leg.last_name);
+            System.out.println("This is the OpenState Leg_id: " + leg.leg_id + "\n");
         }
 
         return openStateLegislatorList;
     }
 
     @Override
-    public ArrayList<OpenStateLegislatorDetail> getLegislatorDetailData(ArrayList<OpenStateLegislatorDetail> openStateLegislatorDetailList) {
-
+    public ArrayList<OpenStateLegislatorDetail> getLegislatorDetailData(ArrayList<OpenStateLegislatorDetail> openStateLegislatorDetailItems) {
+        openStateLegislatorDetailList = openStateLegislatorDetailItems;
         System.out.println("This is the legislatorDetailRepo: ");
+        System.out.println(openStateLegislatorDetailList);
+
         for (OpenStateLegislatorDetail legDetail : openStateLegislatorDetailList) {
-            System.out.println("This is the firstName: " + legDetail.first_name);
-            System.out.println("This is the lastname: " + legDetail.last_name);
-            System.out.println("This is the party: " + legDetail.party);
-            System.out.println("This is the photo_url: " + legDetail.photo_url);
-            System.out.println("This is the district: " + legDetail.district);
-            System.out.println("This is the level: " + legDetail.level);
-            System.out.println("This is the chamber: " + legDetail.chamber);
-            System.out.println("This is the office_address: " + legDetail.office_address);
-            System.out.println("This is the email: " + legDetail.email);
-            System.out.println("This is the leg_id: " + legDetail.leg_id);
-            System.out.println("This is the roles: " + legDetail.roles);
-
-            JSONArray roleArray = (JSONArray) legDetail.roles;
-
-            for (Object obj : roleArray) {
-
-                if (obj instanceof JSONArray) {
-                    System.out.println("We have a JSONArray");
-                } else if (obj instanceof JSONObject) {
-                    JSONObject jsonObject = (JSONObject) obj;
-                    String committee = (String) jsonObject.get("committee");
-                    String committee_id = (String) jsonObject.get("committee_id");
-                    String position = (String) jsonObject.get("position");
-                    System.out.println("This is the roles committee: " + committee);
-                    System.out.println("This is the roles committee_id: " + committee_id);
-                    System.out.println("This is the roles position: " + position + "\n");
-
-                } else if (obj instanceof Object) {
-                    System.out.println("We have an Object");
-
-                } else {
-
-                    System.out.println("We are not dealing with a JSONArray, JSONObject or Object, werid");
-                }
+            System.out.println("This is the OpenState firstName: " + legDetail.first_name);
+            System.out.println("This is the OpenState lastname: " + legDetail.last_name);
+            System.out.println("This is the OpenState party: " + legDetail.party);
+            System.out.println("This is the OpenState photo_url: " + legDetail.photo_url);
+            System.out.println("This is the OpenState district: " + legDetail.district);
+            System.out.println("This is the OpenState level: " + legDetail.level);
+            System.out.println("This is the OpenState chamber: " + legDetail.chamber);
+            System.out.println("This is the OpenState office_address: " + legDetail.office_address);
+            System.out.println("This is the OpenState email: " + legDetail.email);
+            System.out.println("This is the OpenState leg_id: " + legDetail.leg_id);
+            JSONArray roleArray = (JSONArray)legDetail.roles;
+            for(Object obj : roleArray)
+            {
+                JSONObject jsonObject = (JSONObject)obj;
+                System.out.println(jsonObject.get("committee"));
+                String committee = (String) jsonObject.get("committee");
+                String committee_id = (String) jsonObject.get("committee_id");
+                String position = (String) jsonObject.get("position");
+                System.out.println("This is the OpenState roles committee: " + committee);
+                System.out.println("This is the OpenState roles committee_id: " + committee_id);
+                System.out.println("This is the OpenState roles position: " + position + "\n");
             }
-
         }
 
         return openStateLegislatorDetailList;
@@ -93,7 +82,10 @@ public class OpenStateRepository implements IOpenStateRespository {
                 result = leg;
 
                 // TODO: Print out values from search
-                System.out.println("This is the result from the getLegislatorByLegID result: " + result.leg_id);
+                System.out.println("This is the leg_id from the getLegislatorByLegID result: " + leg.leg_id);
+                System.out.println("This is the firstName from the getLegislatorByLegID result: " + leg.first_name);
+                System.out.println("This is the lastName from the getLegislatorByLegID result: " + leg.last_name);
+
             }
 
         }
@@ -113,7 +105,7 @@ public class OpenStateRepository implements IOpenStateRespository {
             {
                 result = leg;
 
-                System.out.println("This is the result from the getLegislatorByLastName result: " + result.last_name);
+                System.out.println("This is from the OpenStateRepository(getLegislatorbyLastName): " + result.last_name);
             }
         }
 
@@ -122,15 +114,35 @@ public class OpenStateRepository implements IOpenStateRespository {
     @Override
     public void getLegislatorDetailByLegID(ArrayList<OpenStateLegislatorDetail> openStateLegislatorDetailsItems, String leg_id)
     {
+        System.out.println("This is printing from the OpenStateRepository: ");
         openStateLegislatorDetailList = openStateLegislatorDetailsItems;
         String targetName = leg_id;
-        OpenStateLegislatorDetail result = null;
-        for(OpenStateLegislatorDetail legDetail : openStateLegislatorDetailList)
+
+
+        for (OpenStateLegislatorDetail legDetail : openStateLegislatorDetailList)
         {
             if(targetName.equals(legDetail.leg_id))
+            System.out.println("This is the OpenState firstName: " + legDetail.first_name);
+            System.out.println("This is the OpenState lastname: " + legDetail.last_name);
+            System.out.println("This is the OpenState party: " + legDetail.party);
+            System.out.println("This is the OpenState photo_url: " + legDetail.photo_url);
+            System.out.println("This is the OpenState district: " + legDetail.district);
+            System.out.println("This is the OpenState level: " + legDetail.level);
+            System.out.println("This is the OpenState chamber: " + legDetail.chamber);
+            System.out.println("This is the OpenState office_address: " + legDetail.office_address);
+            System.out.println("This is the OpenState email: " + legDetail.email);
+            System.out.println("This is the OpenState leg_id: " + legDetail.leg_id);
+            JSONArray roleArray = (JSONArray)legDetail.roles;
+            for(Object obj : roleArray)
             {
-                result = legDetail;
-                System.out.println("This is from the getLegislatorDetailByLegID: " + result.last_name);
+                JSONObject jsonObject = (JSONObject)obj;
+                System.out.println(jsonObject.get("committee"));
+                String committee = (String) jsonObject.get("committee");
+                String committee_id = (String) jsonObject.get("committee_id");
+                String position = (String) jsonObject.get("position");
+                System.out.println("This is the OpenState roles committee: " + committee);
+                System.out.println("This is the OpenState roles committee_id: " + committee_id);
+                System.out.println("This is the OpenState roles position: " + position + "\n");
 
             }
         }

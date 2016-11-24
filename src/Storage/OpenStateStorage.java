@@ -73,9 +73,14 @@ public class OpenStateStorage
         String office_address = (String) jsonObject.get("office_address");
         String email = (String) jsonObject.get("email");
         String legID = (String) jsonObject.get("leg_id");
-        ArrayList<Roles> roles = (ArrayList) jsonObject.get("roles");
+        String committee_id = (String) jsonObject.get("committee_id");
+        String committee = (String) jsonObject.get("committee");
+        String position = (String) jsonObject.get("position");
+        ArrayList<Roles> roles = (ArrayList)jsonObject.get("roles");
 
-        OpenStateLegislatorDetail fillOpenStateLegislatorDetail = new OpenStateLegislatorDetail(firstName, lastName, party, photo_url, district, level, chamber, office_address, email, legID, roles);
+
+
+        OpenStateLegislatorDetail fillOpenStateLegislatorDetail = new OpenStateLegislatorDetail(firstName, lastName, party, photo_url, district, level, chamber, office_address, email, legID, committee_id, committee, position, roles);
 
         openStateLegislatorDetailArrayList.add(fillOpenStateLegislatorDetail);
 
