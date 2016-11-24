@@ -5,9 +5,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-/**
- * Created by tommarler on 11/21/16.
- */
 public class FollowTheMoneyRequest {
 
     public FollowTheMoneyRequest()

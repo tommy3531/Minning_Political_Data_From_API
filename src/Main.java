@@ -1,10 +1,12 @@
-import DataModel.FollowTheMoneyLegislator;
-import DataModel.OpenFECLegislator;
-import DataModel.OpenStateLegislator;
-import DataModel.OpenStateLegislatorDetail;
+import DataModel.*;
 import Manager.FollowTheMoneyManager;
+import Manager.GovTrackManager;
+import Manager.OpenFECManager;
 import Manager.OpenStateManager;
 import Respository.FollowTheMoneyRespository;
+import Respository.GovTrackRespository;
+import com.esotericsoftware.yamlbeans.YamlReader;
+import com.sun.org.apache.xpath.internal.Arg;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.json.simple.JSONObject;
@@ -97,8 +99,9 @@ public class Main {
 //        stateRepo.getLegislatorByLegID(openStateLegislatorList, "MOL000417");
 //        stateRepo.getLegislatorByLastName(openStateLegislatorList, "Wasson");
 //        stateRepo.getLegislatorDetailByLegID(openStateLegislatorDetailList, "MOL000417");
-/*****************  FollowTheMOney ************************************************************************************/
+/*****************  FollowTheMoney ************************************************************************************/
 
+//        http://api.followthemoney.org/?c-t-eid=3837002&gro=d-id,c-t-id,c-t-sts,d-empl,d-occupation&APIKey=4bed8fe186974ce2df75046bb3f3f220&mode=json
 //        FollowTheMoneyManager moneyManager = new FollowTheMoneyManager();
 //        // Get the hash
 //        HashMap followTheMoneyHash = new HashMap();
@@ -134,15 +137,41 @@ public class Main {
 //        moneyResponse.close();
 
 
-/***************** END FollowTheMOney STUFF ***************************************************************************/
+/***************** END FollowTheMoney  *******************************************************************************/
 
 //        // Start of FollowTheMoneyRespository
 //        FollowTheMoneyRespository moneyRespository = new FollowTheMoneyRespository();
 //        moneyRespository.getFollowTheMoneyLegislatorData(followTheMoneyArrayList);
 
+//    }
+//}
+/***************************** GovTrack Code ***************************************************************************/
+        GovTrackManager govManager = new GovTrackManager();
+        GovTrackRespository govRespository = new GovTrackRespository();
+        ArrayList<GovTrackLegislator> govTrackLegislatorArrayList;
+        File file = new File("legislator-current.json");
+        govTrackLegislatorArrayList = govManager.getGovTrackList(file);
+        //govRespository.getGovTrackLegislatorData(govTrackLegislatorArrayList);
+        String legid = "400050";
+        govRespository.getGovTrackLegislatorDataByID(legid, govTrackLegislatorArrayList);
+
     }
 }
-/***************************** OpenFEC Code ***************************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+// https://api.open.fec.gov/v1/candidates/?candidate_status=C&incumbent_challenge=I&per_page=20&state=mo&api_key=AVpaPd4e2VB1GLoPCOg8BSfFSpbMQQJwA7krAqsq&page=1
+//OpenFECManager fecManager = new OpenFECManager();
 //        String govTrackCandidate_id = "https://api.open.fec.gov/v1/candidates/?candidate_status=C&incumbent_challenge=I&per_page=20&state=mo&api_key=AVpaPd4e2VB1GLoPCOg8BSfFSpbMQQJwA7krAqsq&page=1";
 //
 //        HttpClient client = HttpClientBuilder.create().build();
@@ -167,8 +196,11 @@ public class Main {
 //            {
 //                JSONObject jOb1 = (JSONObject)obj2;
 //                String name         =  (String) jOb1.get("name");
-//                String candidate_id = (String) jOb1.get("id");
+//                String candidate_id = (String) jOb1.get("candidate_id");
+//                String rep_state = (String) jOb1.get("rep_state");
 //                String office_sought =  (String) jOb1.get("office_sought");
+//                String incumbent_chanllenge =  (String) jOb1.get("incumbent_chanllenge");
+//                String candidate_status =  (String) jOb1.get("candidate_status");
 //                System.out.println("This is the name: " + name);
 //                System.out.println("This is the state: " + candidate_id);
 //                System.out.println("This is the party_full: " + office_sought + "\n");

@@ -184,6 +184,7 @@ public class OpenStateLegislatorDetail
 
     public void setRoles(ArrayList<Roles> roles)
     {
+
         this.roles = roles;
     }
 

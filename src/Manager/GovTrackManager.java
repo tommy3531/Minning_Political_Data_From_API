@@ -3,23 +3,25 @@ package Manager;
 import DataModel.GovTrackLegislator;
 import Request.GovTrackRequest;
 import Response.GovTrackJsonResponse;
+import Storage.GovTrackStorage;
 import UrlBuilder.GovTrackUrlBuilder;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.json.simple.parser.ParseException;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class GovTrackManager
 {
     // GovTrack OpenStateLegislator Array
     public ArrayList<GovTrackLegislator> govTrackLegislatorLists;
-    GovTrackUrlBuilder govUrl = new GovTrackUrlBuilder();
-    GovTrackRequest govReqest = new GovTrackRequest();
-    GovTrackJsonResponse govJson = new GovTrackJsonResponse();
+    GovTrackStorage govStorage = new GovTrackStorage();
     String strGovTrackURL;
+    HashMap govHash = new HashMap();
 
     public GovTrackManager()
     {
@@ -27,35 +29,12 @@ public class GovTrackManager
 
     }
 
-    public String govTrackGetState(String inputState)
+
+
+    public ArrayList<GovTrackLegislator> getGovTrackList(File govList) throws IOException, ParseException
     {
-        System.out.println("This is the state: " + inputState);
-        return inputState;
-    }
-
-    public String govTrackBuildUrl(String inputState)
-    {
-        strGovTrackURL = govUrl.govTrackUrlBuilder(inputState);
-        System.out.println("This is the statURL: " + strGovTrackURL);
-        return strGovTrackURL;
-    }
-
-    public HttpResponse govTrackResponse(String govTrackUrl) throws Exception {
-
-        // TODO: (CloseableHttpResponse) Change HttpResponse to closeable HTTResponse
-        // Send request to OpenstateAPI
-        HttpResponse responseStatus = govReqest.govTrackSendRequest(govTrackUrl);
-        System.out.println("This is the responseStatus: " + responseStatus);
-
-        // return response
-        return responseStatus;
-
-    }
-
-    public String govTrackJson(HttpResponse govTrackResponse) throws IOException
-    {
-        String govTrackJsonStr = govJson.GovTrackLegislatorJson(govTrackResponse);
-        return govTrackJsonStr;
+        govTrackLegislatorLists = govStorage.storeGovTrackLegislator(govList);
+        return govTrackLegislatorLists;
     }
 
 

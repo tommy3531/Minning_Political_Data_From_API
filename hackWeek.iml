@@ -14,5 +14,6 @@
     <orderEntry type="library" name="org.apache.directory.studio:org.apache.httpcomponents.httpclient:4.0" level="project" />
     <orderEntry type="library" name="com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="com.mashape.unirest:unirest-java:1.4.9" level="application" />
+    <orderEntry type="library" name="com.github.sanjusoftware:yamlbeans:1.11" level="application" />
   </component>
 </module>

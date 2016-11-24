@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "limit": 100,
+    "offset": 0,
+    "total_count": 10
+  },
+  "objects": [
+    {
+      "person": {
+        "bioguideid": "B000575",
+        "id": 400034,
+        "name": "Sen. Roy Blunt [R-MO]",
+        "osid": "N00005195",
+        "pvsid": "418",
+        "twitterid": "RoyBlunt",
+        "youtubeid": "SenatorBlunt"
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "M001170",
+        "id": 412243,
+        "name": "Sen. Claire McCaskill [D-MO]",
+        "osid": "N00027694",
+        "pvsid": "2109",
+        "twitterid": "McCaskillOffice",
+        "youtubeid": "SenatorMcCaskill"
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "C001049",
+        "id": 400074,
+        "name": "Rep. Lacy Clay [D-MO1]",
+        "osid": "N00012460",
+        "pvsid": "8967",
+        "twitterid": null,
+        "youtubeid": "WilliamLacyClay"
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "G000546",
+        "id": 400158,
+        "name": "Rep. Sam Graves [R-MO6]",
+        "osid": "N00013323",
+        "pvsid": "9425",
+        "twitterid": "RepSamGraves",
+        "youtubeid": null
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "C001061",
+        "id": 400639,
+        "name": "Rep. Emanuel Cleaver [D-MO5]",
+        "osid": "N00026790",
+        "pvsid": "39507",
+        "twitterid": "RepCleaver",
+        "youtubeid": "repcleaver"
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "L000569",
+        "id": 412292,
+        "name": "Rep. Blaine Luetkemeyer [R-MO3]",
+        "osid": "N00030026",
+        "pvsid": "20400",
+        "twitterid": "RepBlainePress",
+        "youtubeid": "BLuetkemeyer"
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "H001053",
+        "id": 412444,
+        "name": "Rep. Vicky Hartzler [R-MO4]",
+        "osid": "N00031005",
+        "pvsid": "8783",
+        "twitterid": "RepHartzler",
+        "youtubeid": "repvickyhartzler"
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "L000576",
+        "id": 412445,
+        "name": "Rep. Billy Long [R-MO7]",
+        "osid": "N00030676",
+        "pvsid": "123401",
+        "twitterid": "USRepLong",
+        "youtubeid": "MOdistrict7"
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "W000812",
+        "id": 412548,
+        "name": "Rep. Ann Wagner [R-MO2]",
+        "osid": "N00033106",
+        "pvsid": "136083",
+        "twitterid": "RepAnnWagner",
+        "youtubeid": null
+      }
+    },
+    {
+      "person": {
+        "bioguideid": "S001195",
+        "id": 412596,
+        "name": "Rep. Jason Smith [R-MO8]",
+        "osid": "N00035282",
+        "pvsid": "59318",
+        "twitterid": "RepJasonSmith",
+        "youtubeid": "RepJasonSmith"
+      }
+    }
+  ]
+}
